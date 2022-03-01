@@ -45,3 +45,20 @@ The following ouput must be shown:
 [==========] X tests from 1 test suite ran. (X ms total)
 [  PASSED  ] X tests.
 ```
+
+## Use docker
+
+In Host computer:
+
+1. Pull gcc image `docker pull gcc:9.4`
+2. Go to the project directory `cd <ROOT_FOLDER_OF_PROJECT>
+3. Start docker sharing the project `docker run -it --rm -v "$PWD":/home gcc:9.4.0`
+
+This will open the docker with a terminal, inside docker:
+
+1. Install cmake, we will use v3.22.2 
+`wget https://github.com/Kitware/CMake/releases/download/v3.22.2/cmake-3.22.2-Linux-x86_64.sh -q -O /tmp/cmake-install.sh && chmod u+x /tmp/cmake-install.sh && mkdir /usr/bin/cmake && /tmp/cmake-install.sh --skip-license --prefix=/usr/bin/cmake && rm /tmp/cmake-install.sh`
+2. `cd /home/build`
+3. Remove previous generated files with `rm -rf *`
+4. Run cmake and make. Use full path to invoque cmake
+`/usr/bin/cmake/bin/cmake .. && make`
